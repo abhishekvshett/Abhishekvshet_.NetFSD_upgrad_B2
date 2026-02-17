@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form with Input Types</title>
+</head>
+<body>
+    <form action="">
+        <nav>
+            <label for="name">Name: </label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+        </nav>
+
+        <br>
+
+        <nav>
+            <label for="ema">Email: </label>
+            <input type="email" id="ema" name="email" placeholder="Enter your email id" required>
+        </nav>
+
+        <br>
+        <nav>
+            <label for="phone">Tel: </label>
+            <input type="tel" id="phone" pattern="[0-9]{10}" placeholder="Phone number">
+        </nav>
+
+        <br>
+
+        <nav>
+            <label for="age">Age: </label>
+            <input type="number" id="age"  min="1" max="90" required>
+        </nav>
+
+        <br>
+
+        <nav>
+            <label for="dob">Date: </label>
+            <input type="date" id="dob" required>
+        </nav>
+
+        <br>
+        <br>
+        <input type="submit" value="Register">
+    </form>
+</body>
+</html>

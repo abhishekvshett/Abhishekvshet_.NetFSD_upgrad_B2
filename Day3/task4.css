@@ -1,0 +1,76 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Dashboard Layout */
+.dashboard {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 220px;
+  background-color: #082e53;
+  color: rgb(233, 223, 223);
+  padding: 20px;
+}
+
+.sidebar ul {
+  list-style: none;
+  margin-top: 20px;
+}
+
+.sidebar li {
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  padding: 20px;
+  background-color: #cf2c26;
+}
+
+/* Cards Container */
+.cards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+/* Individual Card */
+.card {
+  flex: 1 1 200px;
+  background: rgb(213, 123, 123);
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+/* ========================= */
+/* 📱 MEDIA QUERY FOR MOBILE */
+/* ========================= */
+
+@media (max-width: 799px) {
+
+  /* Convert sidebar to top nav */
+  .dashboard {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+
+  /* Stack cards vertically */
+  .cards {
+    flex-direction: column;
+  }
+}

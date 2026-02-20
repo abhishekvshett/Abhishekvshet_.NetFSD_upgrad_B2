@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Profile</title>
+    <style>
+        #profileBox {
+            border: 1px solid black;
+            padding: 15px;
+            width: 250px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Student Profile</h2>
+
+    <button id="showProfileBtn">Show Profile</button>
+    <button id="updateMarksBtn">Update Marks</button>
+
+    <div id="profileBox"></div>
+
+    <script>
+
+        // Global object
+        var student = {
+            name: "Abhishek",
+            rollNo: 101,
+            marks: 85
+        };
+
+        function updateStudentProfile(studentObj) {
+            var content = "Name: " + studentObj.name + "<br>" +
+                          "Roll No: " + studentObj.rollNo + "<br>" +
+                          "Marks: " + studentObj.marks;
+
+            document.getElementById("profileBox").innerHTML = content;
+        }
+
+        function updateMarks(newMarks) {
+            student.marks = newMarks;
+            updateStudentProfile(student);
+        }
+
+        document.getElementById("showProfileBtn").addEventListener("click", function() {
+            updateStudentProfile(student);
+        });
+
+        document.getElementById("updateMarksBtn").addEventListener("click", function() {
+            updateMarks(95);
+        });
+
+    </script>
+
+</body>
+</html>

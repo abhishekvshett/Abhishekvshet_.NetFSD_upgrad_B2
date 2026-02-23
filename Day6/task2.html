@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Form Validation</title>
+</head>
+<body>
+
+    <h2>Registration Form</h2>
+
+    Name: 
+    <input type="text" id="name" onchange="validateName()">
+    <span id="nameError" style="color:red"></span>
+    <br><br>
+
+    Email: 
+    <input type="text" id="email" onchange="validateEmail()">
+    <span id="emailError" style="color:red"></span>
+    <br><br>
+
+    Age: 
+    <input type="number" id="age" onchange="validateAge()">
+    <span id="ageError" style="color:red"></span>
+    <br><br>
+
+    <button onclick="submitForm()">Submit</button>
+
+    <script>
+        function validateName() {
+            let name = document.getElementById("name").value;
+            if (name === "") {
+                document.getElementById("nameError").innerText = "Name cannot be empty";
+            } else {
+                document.getElementById("nameError").innerText = "";
+            }
+        }
+
+        function validateEmail() {
+            let email = document.getElementById("email").value;
+            if (!email.includes("@")) {
+                document.getElementById("emailError").innerText = "Invalid Email";
+            } else {
+                document.getElementById("emailError").innerText = "";
+            }
+        }
+
+        function validateAge() {
+            let age = document.getElementById("age").value;
+            if (age <= 18) {
+                document.getElementById("ageError").innerText = "Age must be above 18";
+            } else {
+                document.getElementById("ageError").innerText = "";
+            }
+        }
+
+        function submitForm() {
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let age = document.getElementById("age").value;
+
+            if (name !== "" && email.includes("@") && age > 18) {
+                sessionStorage.setItem("userData", JSON.stringify({name, email, age}));
+                alert("Data Saved in Session Storage!");
+            } else {
+                alert("Please correct errors before submitting");
+            }
+        }
+    </script>
+
+</body>
+</html>

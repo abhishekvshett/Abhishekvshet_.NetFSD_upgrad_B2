@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Location Logger</title>
+</head>
+<body onload="loadLocations()">
+
+    <h2>Location Logger</h2>
+
+    <button onclick="getLocation()">Get My Location</button>
+
+    <p id="currentLocation"></p>
+
+    <h3>Last 5 Locations:</h3>
+    <ul id="locationHistory"></ul>
+
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(success, error);
+            } else {
+                alert("Geolocation not supported");
+            }
+        }
+
+        function success(position) {
+            let lat = position.coords.latitude;
+            let long = position.coords.longitude;
+
+            document.getElementById("currentLocation").innerText =
+                "Latitude: " + lat + " | Longitude: " + long;
+
+            let locations = JSON.parse(localStorage.getItem("locations")) || [];
+
+            locations.push({ latitude: lat, longitude: long });
+
+            if (locations.length > 5) {
+                locations.shift();
+            }
+
+            localStorage.setItem("locations", JSON.stringify(locations));
+
+            loadLocations();
+        }
+
+        function error(err) {
+            alert("Error: " + err.message);
+        }
+
+        function loadLocations() {
+            let locations = JSON.parse(localStorage.getItem("locations")) || [];
+            let list = document.getElementById("locationHistory");
+            list.innerHTML = "";
+
+            locations.forEach(loc => {
+                let li = document.createElement("li");
+                li.innerText = "Lat: " + loc.latitude + " | Long: " + loc.longitude;
+                list.appendChild(li);
+            });
+        }
+    </script>
+
+</body>
+</html>

@@ -1,19 +1,19 @@
 let tasks = [];
 
-// =====================
-// 1️⃣ CALLBACK VERSION
-// =====================
+// // =====================
+// // 1️⃣ CALLBACK VERSION
+// // =====================
 
-export const addTaskCallback = (task, callback) => {
-  setTimeout(() => {
-    tasks.push(task);
-    callback(`Task "${task}" added.`);
-  }, 1000);
-};
+// export const addTaskCallback = (task, callback) => {
+//   setTimeout(() => {
+//     tasks.push(task);
+//     callback(`Task "${task}" added.`);
+//   }, 1000);
+// };
 
-// =====================
-// 2️⃣ PROMISE VERSION
-// =====================
+// // =====================
+// // 2️⃣ PROMISE VERSION
+// // =====================
 
 export const addTaskPromise = (task) => {
   return new Promise((resolve) => {

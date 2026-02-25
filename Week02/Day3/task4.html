@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Search</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 8px;
+            border: 1px solid #ccc;
+            margin: 5px;
+        }
+
+        #noResults {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Product Search</h2>
+    <input type="text" id="searchInput" placeholder="Search product...">
+
+    <ul id="productList"></ul>
+    <p id="noResults"></p>
+
+    <script>
+        const products = [
+            "Laptop",
+            "Mobile",
+            "Headphones",
+            "Keyboard",
+            "Mouse",
+            "Monitor"
+        ];
+
+        const searchInput = document.getElementById("searchInput");
+        const productList = document.getElementById("productList");
+        const noResults = document.getElementById("noResults");
+
+        function renderProducts(productArray) {
+            productList.innerHTML = "";
+
+            if (productArray.length === 0) {
+                noResults.textContent = "No Results Found";
+                return;
+            }
+
+            noResults.textContent = "";
+
+            productArray.forEach(product => {
+                const li = document.createElement("li");
+                li.textContent = product;
+                productList.appendChild(li);
+            });
+        }
+
+        searchInput.addEventListener("input", function () {
+            const searchValue = searchInput.value.toLowerCase();
+
+            const filteredProducts = products.filter(product =>
+                product.toLowerCase().includes(searchValue)
+            );
+
+            renderProducts(filteredProducts);
+        });
+
+        // Initial load
+        renderProducts(products);
+    </script>
+
+</body>
+</html>

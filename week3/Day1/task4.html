@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do App</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .completed { text-decoration: line-through; color: gray; }
+        li { margin: 5px 0; }
+        button { margin-left: 10px; }
+    </style>
+</head>
+<body>
+
+<h2>To-Do List</h2>
+
+<input type="text" id="taskInput" placeholder="Enter task">
+<button id="addTask">Add</button>
+
+<p>Total: <span id="total">0</span></p>
+<p>Completed: <span id="completed">0</span></p>
+
+<ul id="taskList"></ul>
+
+<script>
+$(function(){
+
+    function updateCounts(){
+        $("#total").text($("#taskList li").length);
+        $("#completed").text($("#taskList li.completed").length);
+    }
+
+    $("#addTask").click(function(){
+
+        let task = $("#taskInput").val();
+
+        if(task !== ""){
+            $("#taskList").append(
+                "<li>" + task + 
+                "<button class='complete'>Done</button>" +
+                "<button class='delete'>Delete</button></li>"
+            );
+            $("#taskInput").val("");
+            updateCounts();
+        }
+
+    });
+
+    $("#taskList").on("click", ".complete", function(){
+        $(this).parent().toggleClass("completed");
+        updateCounts();
+    });
+
+    $("#taskList").on("click", ".delete", function(){
+        $(this).parent().remove();
+        updateCounts();
+    });
+
+});
+</script>
+
+</body>
+</html>
